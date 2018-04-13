@@ -7,7 +7,6 @@ import AdminFront from './AdminFront.js';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-console.log(Router);
 class Admin extends React.Component{
     // constructor(props){
     //     super(props);

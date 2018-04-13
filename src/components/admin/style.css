@@ -8,10 +8,10 @@
   Link{
     display: inline-block;
   }
-
-  Layout{
+  .ant-layout, .ant-layout-header{
     background: #fff;
   }
-  header{
+  .ant-layout-header{
     padding: 0;
   }
+  

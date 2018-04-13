@@ -11,7 +11,7 @@ class AdminFront extends React.Component{
                 <Layout>
                     <Header>
                         <Menu
-                            selectedKeys='front'
+                            selectedKeys={['front']}
                             mode="horizontal"
                         >
                             <Menu.Item key="front">
@@ -20,7 +20,7 @@ class AdminFront extends React.Component{
                         </Menu>
                     </Header>
                     <Content>
-                        <p>to do something~!!!</p>
+                        <h3>to do something~!!!</h3>
                     </Content>
                 </Layout>
             </div>
