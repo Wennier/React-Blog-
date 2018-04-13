@@ -1,0 +1,8 @@
+.ant-menu{
+    text-align: center;
+}
+.ant-menu-horizontal > .ant-menu-item{
+    float: none;
+    display: inline-block;
+    font-size: 14px;
+}

@@ -4,7 +4,7 @@ import {Layout,  Menu, Icon} from 'antd';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-class AdminFront extends React.Component{
+class UserManager extends React.Component{
     render(){
         return(
             <div>
@@ -15,7 +15,7 @@ class AdminFront extends React.Component{
                             mode="horizontal"
                         >
                             <Menu.Item key="front">
-                                <h2>首页</h2>
+                                <h2>用户管理</h2>
                             </Menu.Item>
                         </Menu>
                     </Header>
@@ -28,4 +28,4 @@ class AdminFront extends React.Component{
     }
 }
 
-export default AdminFront
+export default UserManager
