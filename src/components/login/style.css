@@ -1,6 +1,11 @@
 #login{
     width: auto;
     height: 50px;
-    border: 1px solid red;
     margin-left: 70%;
+    padding: 0px 10px;
+    text-align: center;
+}
+.login_area{
+    background: #fff;
+    min-height: 250px;
 }

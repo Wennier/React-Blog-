@@ -29,7 +29,7 @@ class Admin extends React.Component{
                   {this.props.children}
                 </div>
               </Content>
-              <Footer style={{ textAlign: 'center' }}>
+              <Footer style={{ textAlign: 'center',height:'30px' }}>
                 COPYRIGHT @ zhangwenhui
               </Footer>
             </Layout>

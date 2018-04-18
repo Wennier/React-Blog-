@@ -1,12 +1,14 @@
 import React from 'react';
 import './style.css';
+import ListDemo from './listDemo/ListDemo';
 
 class ArticleList extends React.Component{
 
     render(){
+        console.log(this.props.params);
         return(
             <div className='article'>
-                balabala...
+                <ListDemo tagType={this.props.params}/> 
             </div>
         );
 

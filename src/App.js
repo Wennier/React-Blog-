@@ -12,7 +12,9 @@ class App extends Component {
         <SlideShow />
         <TagsList />
         <div id='content_box'>
-          <ArticleList />
+          {/* <ArticleList />
+          <LogIn /> */}
+          {this.props.children}
           <LogIn />
         </div>
         

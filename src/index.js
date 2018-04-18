@@ -9,6 +9,7 @@ import ArticleManager from './components/admin/components/ArticleManager';
 import PubArticle from './components/admin/components/PubArticle';
 import TagManager from './components/admin/components/TagsManager';
 import UserManager from './components/admin/components/UserManager';
+import ArticleList from './components/articleList/index';
 
 ReactDOM.render(
     <Router history={hashHistory}>
@@ -21,7 +22,8 @@ ReactDOM.render(
         </Route>
         <Route path='/404' component={NotFound}/>
         <Route path='/' component={App}>
-            {/* <Route path='/:tagName' component={ArticleList} /> */}
+            <IndexRoute  component={ArticleList}/>
+            <Route path='/:tagName' component={ArticleList} />
         </Route>
     </Router>, 
     document.getElementById('root'));

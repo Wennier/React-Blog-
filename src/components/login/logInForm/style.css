@@ -1,0 +1,23 @@
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  /* #components-form-demo-normal-login .login-form-forgot {
+    float: right;
+  } */
+  #components-form-demo-normal-login .login-form-button {
+    width: 100%;
+  }
+  .ant-row{
+      padding: 0px 20px;
+      margin-bottom: 0px;
+  }
+  .username{
+      margin-bottom: 15px;
+  }
+  .login-form-button{
+      padding: 0 35px;
+      margin-top: 10px;
+  }
+  .login-form{
+      margin-top: 15px;
+  }
