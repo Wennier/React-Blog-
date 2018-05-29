@@ -4,6 +4,8 @@ import {Layout,  Menu, Icon} from 'antd';
 
 const { Header, Content, Footer, Sider } = Layout;
 
+
+
 class AdminFront extends React.Component{
     render(){
         return(
