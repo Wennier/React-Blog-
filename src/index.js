@@ -10,6 +10,7 @@ import PubArticle from './components/admin/components/PubArticle';
 import TagManager from './components/admin/components/TagsManager';
 import UserManager from './components/admin/components/UserManager';
 import ArticleList from './components/articleList/index';
+import ArticleDetail from './components/toDetail/toDetail';
 
 ReactDOM.render(
     <Router history={hashHistory}>
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path='/' component={App}>
             <IndexRoute  component={ArticleList}/>
             <Route path='/:tagName' component={ArticleList} />
+            <Route path='/toDetail/:id' component={ArticleDetail}/>
         </Route>
     </Router>, 
     document.getElementById('root'));

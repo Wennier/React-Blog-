@@ -9,3 +9,22 @@
     background: #fff;
     min-height: 250px;
 }
+.info_headerPic{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+.info_headerPic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.info_name{
+    margin: 10px 0px;
+    font-size: 18px;
+}
+
+.info_des{
+    font-size: 16px;
+    padding-left: 22px;
+}

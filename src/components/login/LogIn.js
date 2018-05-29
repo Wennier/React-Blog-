@@ -8,21 +8,54 @@ const TabPane = Tabs.TabPane;
 
 class LogIn extends React.Component{
 
+    constructor (props) {
+        super(props);
+        this.state = {
+            isLogIn: false,
+            userName: ''
+
+        }
+    }
+
+    handleIsLogIn (newState, name) {
+        if (newState) {
+            this.setState({
+                isLogIn: newState,
+                userName: name
+            })
+        }
+    }
+
     render(){
+        let { isLogIn, userName } = this.state;
+        let ranNum = Math.round(Math.random()*9);
+        let picSrc = './assets/' + ranNum + '.jpg';
+        const logInFalse = (
+            <Tabs className='login_area' defaultActiveKey="1">
+                <TabPane  tab='登录' key="1">
+                    <LogInForm handleIsLogIn = {this.handleIsLogIn.bind(this)}/>
+                </TabPane>
+                <TabPane tab='注册' key="2">
+                    <SignInForm />
+                </TabPane>
+            </Tabs>
+        );
+        const logInTrue = (
+            <div className="">
+                <span className="info_headerPic"><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527574818670&di=c9764434d84a574ceb81ea25161c0663&imgtype=0&src=http%3A%2F%2Fp.3761.com%2Fpic%2F3661411692793.jpg' alt=""/></span>
+                <h3 className="info_name">{userName}</h3>
+                <p className="info_des">来者都是小仙女~👧</p>
+            </div>
+            
+        );
         return(
             <div id='login'>
-                 <Tabs className='login_area' defaultActiveKey="1">
-                    <TabPane  tab='登录' key="1">
-                        <LogInForm />
-                    </TabPane>
-                    <TabPane tab='注册' key="2">
-                        <SignInForm />
-                    </TabPane>
-                </Tabs>
+                 {isLogIn ? logInTrue : logInFalse}
             </div>
         );
 
     }
+
 }
 
 export default LogIn

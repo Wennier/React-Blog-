@@ -11,3 +11,8 @@ html,body{
     border: 1px bolid black;
 
 }
+.App{
+    height: 100%;
+    z-index: 1000;
+    position: relative;
+}
