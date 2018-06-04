@@ -42,7 +42,7 @@ class LogIn extends React.Component{
         );
         const logInTrue = (
             <div className="">
-                <span className="info_headerPic"><img src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527574818670&di=c9764434d84a574ceb81ea25161c0663&imgtype=0&src=http%3A%2F%2Fp.3761.com%2Fpic%2F3661411692793.jpg' alt=""/></span>
+                <span className="info_headerPic"><img src={require('./assets/'+ ranNum +'.jpg')} alt=""/></span>
                 <h3 className="info_name">{userName}</h3>
                 <p className="info_des">来者都是小仙女~👧</p>
             </div>

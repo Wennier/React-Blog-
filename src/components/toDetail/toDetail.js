@@ -17,10 +17,8 @@ class ArticleDetail extends React.Component{
 
 
     componentDidMount(){
-        console.log('detail-------------------');
         let url = window.location.hash;
         let id = url.slice(url.lastIndexOf('/') + 1, url.indexOf('?'));
-        console.log(id);
         let getArticleDetailURL = getArticleDetail + '/'+ id;
         fetch(getArticleDetailURL,{
             method: 'GET',
@@ -36,8 +34,6 @@ class ArticleDetail extends React.Component{
                 let result = data.result_data;
                 this.setState({articleContent: result});
             }
-            console.log(data);
-            // this.setState({articleLists: articleList});
         });
     }
 

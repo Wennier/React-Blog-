@@ -1,19 +1,86 @@
 
 import React from 'react';
-import {Input, Layout,  Menu, Icon, Tag, Tooltip} from 'antd';
+import {Input, Layout,  Menu, Icon, Tag, Tooltip, notification} from 'antd';
+import api from '../../../api'
 
 const { Header, Content, Footer, Sider } = Layout;
 
+const addTagsURL = api.addTagName;
+const getTagsURL = api.getTagsList;
+const deleteTagURL = api.deleteTagName;
+
 class TagManager extends React.Component{
     state = {
-        tags: ['Unremovable', 'Tag 2', 'Tag 3'],
+        tags: [],
         inputVisible: false,
         inputValue: '',
     };
+
+    componentDidMount(){
+        //获取tags
+        fetch(getTagsURL,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            mode: 'cors'
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            data.result_data.forEach((item,index) => {
+                item['key'] = index;
+            });
+            this.setState({tags: data.result_data});
+        });
+
+        // fetch(userSignInUrl,{
+        //     method: 'POST',
+        //     body: `data=${JSON.stringify(argsObj)}`,
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded',
+        //         'Accept': 'application/json'
+        //     },
+        //     mode: 'cors'
+        // })
+        // .then((res) => res.json())
+        // .then((data) => {
+        //     console.log(data);
+        //     let type = data.status == 0 ? 'success' : 'error';
+        //     notification[type]({
+        //         message: data.msg,
+        //         description: '不管你是开心还是想吐槽或者发泄,这里可能会是一个不错的地方💕'
+        //     });
+        //     if (data.status == 0 ) {
+        //         setTimeout(() => {
+                    
+        //         }, 4500);
+        //     } 
+        //     // this.setState({tagsLists: data.result_data});
+        // });
+    }
     handleClose = (removedTag) => {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
-        console.log(tags);
         this.setState({ tags });
+        //删除标签，更新数据库
+        let argsObj = {name: removedTag}
+        fetch(deleteTagURL,{
+            method: 'POST',
+            body: `data=${JSON.stringify(argsObj)}`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json'
+            },
+            mode: 'cors'
+        })
+        .then(res => res.json())
+        .then((data) => {
+            let type = data.status == 0 ? 'success' : 'error';
+            notification[type]({
+                message: data.msg,
+                description: '不管你是开心还是想吐槽或者发泄,这里可能会是一个不错的地方💕'
+            });
+        });
     }
     showInput = () => {
         this.setState({ inputVisible: true }, () => this.input.focus());
@@ -26,7 +93,7 @@ class TagManager extends React.Component{
         const inputValue = state.inputValue;
         let tags = state.tags;
         if (inputValue && tags.indexOf(inputValue) === -1) {
-          tags = [...tags, inputValue];
+          tags = [...tags, {name: inputValue, key: tags.length}];
         }
         console.log(tags);
         this.setState({
@@ -34,11 +101,31 @@ class TagManager extends React.Component{
           inputVisible: false,
           inputValue: '',
         });
+
+        //增加标签，更新后台数据库
+        let argsObj = {name: inputValue}
+        fetch(addTagsURL,{
+            method: 'POST',
+            body: `data=${JSON.stringify(argsObj)}`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json'
+            },
+            mode: 'cors'
+        })
+        .then(res => res.json())
+        .then((data) => {
+            console.log(data);
+            let type = data.status == 0 ? 'success' : 'error';
+            notification[type]({
+                message: data.msg,
+                description: '不管你是开心还是想吐槽或者发泄,这里可能会是一个不错的地方💕'
+            });
+        });
     
     }
     saveInputRef = input => this.input = input
 
-    
     render(){
         const { tags, inputVisible, inputValue } = this.state;
         return(
@@ -57,13 +144,13 @@ class TagManager extends React.Component{
                     <Content>
                         <div>
                             {tags.map((tag, index) => {
-                                const isLongTag = tag.length > 20;
+                                const isLongTag = tag.name.length > 20;
                                 const tagElem = (
-                                <Tag key={tag} closable afterClose={() => this.handleClose(tag)}>
-                                    {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                                <Tag key={tag.key} closable afterClose={() => this.handleClose(tag.name)}>
+                                    {isLongTag ? `${tag.name.slice(0, 20)}...` : tag.name}
                                 </Tag>
                                 );
-                                return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+                                return isLongTag ? <Tooltip title={tag.name} key={tag.key}>{tagElem}</Tooltip> : tagElem;
                             })}
                             {inputVisible && (
                                 <Input
